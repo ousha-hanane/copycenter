@@ -1,0 +1,107 @@
+=========================================
+ Guide d’installation et d’exécution
+ Projet : CopyCenter (Application Django)
+=========================================
+
+Ce document explique étape par étape comment installer, configurer et exécuter 
+l’application CopyCenter localement.
+
+-----------------------------------------
+1. Prérequis
+-----------------------------------------
+Avant de commencer, assurez-vous d’avoir installé :
+
+- Python 3.11 ou plus récent : https://www.python.org/downloads/
+- Git : https://git-scm.com/downloads
+- Un éditeur de code (VS Code, PyCharm ou autre)
+- (Optionnel) Anaconda si vous préférez gérer vos environnements avec Conda
+
+-----------------------------------------
+2. Récupération du projet
+-----------------------------------------
+Cloner le dépôt GitHub sur votre machine :
+
+    git clone https://github.com/votre-utilisateur/copycenter.git
+    cd copycenter
+
+-----------------------------------------
+3. Création de l’environnement virtuel
+-----------------------------------------
+Il est recommandé d’isoler les dépendances dans un environnement virtuel.
+
+Avec venv (standard Python) :
+
+    python -m venv venv
+
+Activer l’environnement virtuel :
+- Windows :
+    venv\Scripts\activate
+- Linux / Mac :
+    source venv/bin/activate
+
+-----------------------------------------
+4. Installation des dépendances
+-----------------------------------------
+Toutes les dépendances sont listées dans requirements.txt.
+Pour les installer, exécutez :
+
+    pip install -r requirements.txt
+
+-----------------------------------------
+5. Configuration de la base de données
+-----------------------------------------
+Par défaut, CopyCenter utilise SQLite (aucune installation supplémentaire nécessaire).
+
+Initialiser la base de données :
+
+    python manage.py makemigrations
+    python manage.py migrate
+
+-----------------------------------------
+6. Création d’un superutilisateur
+-----------------------------------------
+Pour accéder à l’interface d’administration Django, créez un compte administrateur :
+
+    python manage.py createsuperuser
+
+Entrez un nom d’utilisateur, une adresse email et un mot de passe.
+
+-----------------------------------------
+7. Lancer le serveur de développement
+-----------------------------------------
+Démarrez le serveur avec la commande :
+
+    python manage.py runserver
+
+Le projet sera accessible depuis votre navigateur à l’adresse :
+
+    http://127.0.0.1:8000/
+
+-----------------------------------------
+8. Accéder aux interfaces
+-----------------------------------------
+- Page d’accueil : http://127.0.0.1:8000/
+- Inscription / Connexion : via le menu de navigation
+- Gestion des commandes (enseignants) : accessible après connexion
+- Interface d’administration Django (administrateurs) :
+    http://127.0.0.1:8000/admin/
+
+-----------------------------------------
+9. Notes importantes
+-----------------------------------------
+- Bootstrap est déjà intégré via les templates HTML (aucune installation requise).
+- SQLite est utilisé par défaut. Si vous voulez utiliser PostgreSQL ou MySQL,
+  installez les bibliothèques correspondantes (voir requirements.txt optionnel).
+- En cas de problème avec les dépendances, assurez-vous que votre environnement
+  virtuel est bien activé avant d’exécuter `pip install`.
+
+-----------------------------------------
+10. Étapes futures (optionnelles)
+-----------------------------------------
+- Déploiement sur un serveur (Heroku, Railway, etc.).
+- Intégration de Gunicorn et Whitenoise pour la production.
+- Ajout de la gestion des emails (notifications automatiques).
+
+=========================================
+FIN DU GUIDE
+=========================================
