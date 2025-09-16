@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+    <div class="card shadow-sm p-4">
+        <h2 class="text-center mb-4">Connexion</h2>
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                ⚠️ Nom d'utilisateur ou mot de passe incorrect.
+            </div>
+        {% endif %}
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="id_username" class="form-label">Nom d’utilisateur</label>
+                <input type="text" name="username" autofocus required
+                       class="form-control" id="id_username"
+                       placeholder="Entrez votre nom d’utilisateur">
+            </div>
+
+            <div class="mb-3">
+                <label for="id_password" class="form-label">Mot de passe</label>
+                <input type="password" name="password" required
+                       class="form-control" id="id_password"
+                       placeholder="Entrez votre mot de passe">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+        </form>
+
+        <hr>
+        <p class="text-center">
+            Pas encore de compte ? 
+            <a href="{% url 'register' %}">Inscrivez-vous ici</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

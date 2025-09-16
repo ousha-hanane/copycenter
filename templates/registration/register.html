@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Créer un compte - CopyCenter{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 600px;">
+    <div class="card shadow-sm p-4">
+        <h2 class="text-center mb-4">Créer un compte</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+
+                    {% if field.name == "role" %}
+                        {{ field|add_class:"form-select" }}  <!-- 🔹 menu déroulant -->
+                    {% else %}
+                        {{ field|add_class:"form-control" }}
+                    {% endif %}
+
+                    {% if field.help_text %}
+                        <div class="form-text">{{ field.help_text }}</div>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-success w-100">Créer mon compte</button>
+        </form>
+
+        <hr>
+        <p class="text-center">
+            Déjà un compte ? 
+            <a href="{% url 'login' %}">Connectez-vous ici</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

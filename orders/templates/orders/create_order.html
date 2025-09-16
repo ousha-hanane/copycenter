@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Nouvelle commande{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Nouvelle commande</h2>
+    <div class="card shadow-sm p-4">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="id_department" class="form-label">Département</label>
+                {{ form.department|add_class:"form-select" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_type" class="form-label">Type de commande</label>
+                {{ form.type|add_class:"form-select" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_title" class="form-label">Titre</label>
+                {{ form.title|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_description" class="form-label">Description (facultatif)</label>
+                {{ form.description|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_copies" class="form-label">Nombre de copies</label>
+                {{ form.copies|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_file" class="form-label">Fichier à imprimer</label>
+                {{ file_form.file|add_class:"form-control" }}
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Enregistrer la commande</button>
+            <a href="{% url 'order_list' %}" class="btn btn-secondary w-100 mt-2">Annuler</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Mes commandes - CopyCenter{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Mes commandes</h2>
+    <div class="card shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Département</th>
+                        <th>Type</th>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Copies</th>
+                        <th>Pages</th>
+                        <th>Statut</th>
+                        <th>Date</th>
+                        <th>Fichier</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.department }}</td>
+                            <td>{{ order.get_type_display }}</td>
+                            <td>{{ order.title }}</td>
+                            <td>{{ order.description|truncatechars:50 }}</td>
+                            <td>{{ order.copies }}</td>
+                            <td>{{ order.pages }}</td>
+                            <td>
+                                {% if order.status == "BROUILLON" %}
+                                    <span class="badge bg-secondary">Brouillon</span>
+                                {% elif order.status == "SOUMISE" %}
+                                    <span class="badge bg-primary">Soumise</span>
+                                {% elif order.status == "VALIDÉE" %}
+                                    <span class="badge bg-success">Validée</span>
+                                {% elif order.status == "REFUSÉE" %}
+                                    <span class="badge bg-danger">Refusée</span>
+                                {% elif order.status == "EN_COURS" %}
+                                    <span class="badge bg-warning text-dark">En cours</span>
+                                {% elif order.status == "TERMINÉE" %}
+                                    <span class="badge bg-dark">Terminée</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ order.created_at|date:"d/m/Y H:i" }}</td>
+                            <td>
+                                {% if order.files.first %}
+                                    <a href="{{ order.files.first.file.url }}" target="_blank">📄 Voir</a>
+                                {% else %}
+                                    Aucun fichier
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'edit_order' order.id %}" class="btn btn-sm btn-outline-primary">✏️ Modifier</a>
+                                <a href="{% url 'delete_order' order.id %}" class="btn btn-sm btn-outline-danger">🗑 Supprimer</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center">Aucune commande enregistrée.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

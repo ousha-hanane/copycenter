@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Déconnexion{% endblock %}
+
+{% block content %}
+<div class="alert alert-info">
+    Vous avez été déconnecté avec succès.
+</div>
+<a href="{% url 'login' %}" class="btn btn-secondary">Se reconnecter</a>
+{% endblock %}

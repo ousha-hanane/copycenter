@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Bienvenue{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="mb-4">Bienvenue sur CopyCenter</h1>
+    <p class="lead">Gérez vos commandes de copies facilement en ligne.</p>
+    <a href="{% url 'login' %}" class="btn btn-primary me-2">Connexion</a>
+    <a href="{% url 'register' %}" class="btn btn-success">Inscription</a>
+</div>
+{% endblock %}
