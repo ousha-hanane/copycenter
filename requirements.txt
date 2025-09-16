@@ -1,0 +1,46 @@
+# =========================================
+# Fichier requirements.txt pour CopyCenter
+# =========================================
+# Ce fichier contient toutes les dépendances nécessaires
+# pour exécuter et développer l’application web CopyCenter.
+# Il est destiné à être utilisé avec pip :
+#     pip install -r requirements.txt
+#
+# Environnement : Python 3.11+
+# Framework principal : Django
+# Base de données par défaut : SQLite (intégrée à Python/Django)
+# =========================================
+
+# --- Framework principal ---
+Django==5.0.2             # Framework web utilisé pour l’architecture MTV (Models, Templates, Views)
+
+# --- Gestion et traitement des fichiers PDF ---
+pypdf==3.17.4             # Librairie pour lire les fichiers PDF et compter les pages
+
+# --- Amélioration des formulaires Django ---
+django-widget-tweaks==1.5.0  # Permet de personnaliser facilement l’apparence des formulaires dans les templates
+
+# --- Sécurité et gestion des mots de passe ---
+bcrypt==4.1.2             # Pour le hachage sécurisé des mots de passe (supporté par Django)
+argon2-cffi==23.1.0        # Alternative sécurisée pour le hachage, recommandée par Django
+
+# --- Outils complémentaires pour le développement ---
+sqlparse==0.5.0           # Déjà utilisé par Django pour le parsing SQL
+asgiref==3.7.2            # Nécessaire pour ASGI (serveur Django moderne)
+tzdata==2023.4            # Gestion des fuseaux horaires (important pour Windows)
+
+# --- Optionnels (selon besoins futurs, utiles en production) ---
+# gunicorn==21.2.0         # Serveur WSGI pour déploiement (Linux/Unix)
+# whitenoise==6.6.0        # Gestion des fichiers statiques en production
+# psycopg2-binary==2.9.9   # Si vous migrez vers PostgreSQL
+# mysqlclient==2.2.4       # Si vous migrez vers MySQL/MariaDB
+
+# =========================================
+# Notes :
+# - SQLite est utilisé par défaut (aucune installation nécessaire).
+# - Bootstrap est intégré via CDN dans les templates (pas de dépendance Python).
+# - Pour activer l’environnement virtuel : 
+#     python -m venv venv
+#     source venv/bin/activate   (Linux/Mac)
+#     venv\Scripts\activate      (Windows)
+# =========================================
